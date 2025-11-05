@@ -1,473 +1,453 @@
-# Naming Conventions - TALL Stack Project
+# Naming Conventions for TALL Stack
 
----
-Ultimo aggiornamento: 2025-01-05
-Versione: 1.0.0
----
+Consistent naming conventions improve code readability and maintainability across your TALL Stack application.
 
-## Livewire Components
+## PHP/Laravel Conventions
 
-### Classi PHP
-- **Formato**: PascalCase
-- **Convenzione**: `[Entità][Azione/Tipo]`
-
-```
-✅ CORRECT
-UserProfile
-PostList
-CreatePostForm
-DeleteConfirmationModal
-StatsCard
-
-❌ WRONG
-userProfile
-User_Profile
-user-profile
-create_post_form
-```
-
-### File Blade
-- **Formato**: kebab-case
-- **Posizione**: `resources/views/livewire/`
-
-```
-✅ CORRECT
-user-profile.blade.php
-post-list.blade.php
-create-post-form.blade.php
-
-❌ WRONG
-UserProfile.blade.php
-user_profile.blade.php
-userProfile.blade.php
-```
-
-## Models
-
-### Classi Model
-- **Formato**: PascalCase
-- **Singolare**
+### Classes
 
 ```php
-✅ CORRECT
-User
-Post
-Comment
-ProductCategory
+// PascalCase for class names
+class UserController {}
+class PostService {}
+class OrderRepository {}
 
-❌ WRONG
-Users
-Posts
-product_category
+// Suffix indicates purpose
+class CreateUserAction {}          // Action
+class UserService {}                // Service
+class PostRepository {}             // Repository
+class OrderPolicy {}                // Policy
+class UserCreatedEvent {}           // Event
+class SendWelcomeEmailJob {}        // Job
+class ProductNotFoundException {}   // Exception
 ```
 
-### Tabelle Database
-- **Formato**: snake_case
-- **Plurale**
+### Methods and Functions
 
-```sql
-✅ CORRECT
+```php
+// camelCase for methods
+class UserService
+{
+    public function createUser() {}
+    public function getUserById() {}
+    public function updateUserProfile() {}
+    public function deleteUser() {}
+}
+
+// Boolean methods start with is/has/can/should
+public function isActive(): bool {}
+public function hasPermission(): bool {}
+public function canEdit(): bool {}
+public function shouldNotify(): bool {}
+```
+
+### Variables and Properties
+
+```php
+// camelCase for variables
+$userName = 'John';
+$isActive = true;
+$postCount = 10;
+
+// Descriptive names
+$user = User::find($id);              // ✅ Good
+$u = User::find($id);                 // ❌ Bad
+
+// Collections pluralized
+$users = User::all();
+$activePosts = Post::published()->get();
+```
+
+### Constants
+
+```php
+// UPPER_SNAKE_CASE for constants
+class OrderStatus
+{
+    public const PENDING = 'pending';
+    public const PROCESSING = 'processing';
+    public const COMPLETED = 'completed';
+    public const CANCELLED = 'cancelled';
+}
+
+// Or use Enums (PHP 8.1+)
+enum OrderStatus: string
+{
+    case PENDING = 'pending';
+    case PROCESSING = 'processing';
+    case COMPLETED = 'completed';
+    case CANCELLED = 'cancelled';
+}
+```
+
+## Database Conventions
+
+### Table Names
+
+```php
+// Plural, snake_case
 users
 posts
-comments
+order_items
 product_categories
 
-❌ WRONG
-User
-Posts
-ProductCategories
-product_category
+// Pivot tables: alphabetically ordered, singular
+post_tag        // ✅ Correct
+tag_post        // ❌ Wrong order
+
+post_user       // ✅ Correct
+user_post       // ❌ Wrong order
 ```
 
-### Colonne
-- **Formato**: snake_case
+### Column Names
 
-```sql
-✅ CORRECT
-created_at
-user_id
+```php
+// snake_case
 first_name
+email_address
+created_at
+is_active
+
+// Boolean columns prefix with is/has
 is_published
+has_paid
+is_verified
 
-❌ WRONG
-createdAt
-userId
-FirstName
-isPublished
+// Foreign keys: singular_id
+user_id
+category_id
+author_id
+
+// Polymorphic relationships
+commentable_id
+commentable_type
 ```
 
-### Relazioni (Metodi)
-- **Formato**: camelCase
-- **Singolare per belongsTo/hasOne**
-- **Plurale per hasMany/belongsToMany**
+### Indexes and Constraints
 
 ```php
-✅ CORRECT
-public function user()           // belongsTo
-public function posts()          // hasMany
-public function categories()     // belongsToMany
-public function latestPost()     // hasOne
+// Format: {table}_{columns}_{type}
+users_email_unique
+posts_user_id_foreign
+posts_title_published_at_index
 
-❌ WRONG
-public function User()
-public function post()           // hasMany dovrebbe essere plurale
-public function category()       // belongsToMany dovrebbe essere plurale
+// Primary key: id
+Schema::create('users', function (Blueprint $table) {
+    $table->id(); // Creates 'id' column
+});
 ```
 
-## Controllers
+## Livewire Conventions
 
-- **Formato**: PascalCase
-- **Suffisso**: `Controller`
+### Component Classes
 
 ```php
-✅ CORRECT
-UserController
-PostController
-Api\V1\UserController
+// PascalCase, descriptive names
+class UserProfile extends Component {}
+class CreatePost extends Component {}
+class EditProductForm extends Component {}
+class ProductCard extends Component {}
 
-❌ WRONG
-userController
-Usercontroller
-User_Controller
-Users_Controller
+// Nested components
+class Posts\PostList extends Component {}
+class Users\Profile\EditForm extends Component {}
 ```
 
-## Services
+### Component Views
 
-- **Formato**: PascalCase
-- **Suffisso**: `Service`
-- **Posizione**: `app/Services/`
+```blade
+{{-- kebab-case, matches component --}}
+livewire/user-profile.blade.php
+livewire/create-post.blade.php
+livewire/edit-product-form.blade.php
+livewire/product-card.blade.php
 
-```php
-✅ CORRECT
-UserService
-NotificationService
-PaymentProcessingService
-
-❌ WRONG
-UserSvc
-NotificationServices
-PaymentProcessing
+{{-- Nested --}}
+livewire/posts/post-list.blade.php
+livewire/users/profile/edit-form.blade.php
 ```
 
-## Actions
-
-- **Formato**: PascalCase
-- **Convenzione**: Verbo + sostantivo
-- **Posizione**: `app/Actions/`
+### Public Properties
 
 ```php
-✅ CORRECT
-CreateUser
-UpdateUserProfile
-SendWelcomeEmail
-ProcessPayment
-GenerateInvoice
+class CreatePost extends Component
+{
+    // camelCase for properties
+    public string $title = '';
+    public string $content = '';
+    public int $categoryId;
 
-❌ WRONG
-UserCreate
-Create
-UserUpdate
-SendEmail (troppo generico)
+    // Boolean properties
+    public bool $isPublished = false;
+    public bool $hasImages = false;
+}
 ```
 
-## Jobs
-
-- **Formato**: PascalCase
-- **Convenzione**: Verbo + sostantivo
-- **Posizione**: `app/Jobs/`
+### Methods
 
 ```php
-✅ CORRECT
-ProcessPodcast
-SendEmailNotification
-GenerateReport
-SyncDataWithThirdParty
+class ProductList extends Component
+{
+    // Action methods (user-triggered)
+    public function create() {}
+    public function edit($id) {}
+    public function delete($id) {}
 
-❌ WRONG
-PodcastJob
-EmailJob
-Report
-DataSync
+    // Lifecycle hooks (Livewire-specific)
+    public function mount() {}
+    public function updated($property) {}
+    public function render() {}
+
+    // Custom computed properties
+    #[Computed]
+    public function filteredProducts() {}
+
+    // Event listeners
+    protected $listeners = [
+        'productCreated' => 'refreshList',
+        'productDeleted' => 'removeProduct',
+    ];
+}
 ```
 
-## Events
-
-- **Formato**: PascalCase
-- **Convenzione**: Sostantivo + participio passato
-- **Posizione**: `app/Events/`
+### Events
 
 ```php
-✅ CORRECT
-UserCreated
-OrderShipped
-PaymentProcessed
-PostPublished
+// kebab-case for event names
+$this->dispatch('post-created');
+$this->dispatch('user-updated');
+$this->dispatch('cart-item-added');
 
-❌ WRONG
-CreateUser
-ShipOrder
-ProcessPayment
-PublishPost
+// In view
+x-on:post-created="..."
+@post-created="..."
 ```
 
-## Listeners
+## Blade/Views Conventions
 
-- **Formato**: PascalCase
-- **Convenzione**: Verbo + sostantivo
-- **Posizione**: `app/Listeners/`
+### View Files
 
 ```php
-✅ CORRECT
-SendWelcomeEmail
-NotifyAdministrators
-UpdateUserStatistics
-LogActivity
+// kebab-case
+resources/views/posts/index.blade.php
+resources/views/users/profile.blade.php
+resources/views/components/product-card.blade.php
 
-❌ WRONG
-WelcomeEmailSender
-AdminNotifier
-UserStatsUpdater
+// Partials prefix with underscore
+resources/views/posts/_form.blade.php
+resources/views/layouts/_navigation.blade.php
 ```
 
-## Policies
-
-- **Formato**: PascalCase
-- **Suffisso**: `Policy`
-- **Posizione**: `app/Policies/`
+### Blade Components
 
 ```php
-✅ CORRECT
-PostPolicy
-UserPolicy
-CommentPolicy
+// Component class: PascalCase
+class ProductCard extends Component {}
+class FormInput extends Component {}
 
-❌ WRONG
-PostsPolicy
-Post_Policy
-PolicyPost
-```
+// Component view: kebab-case
+components/product-card.blade.php
+components/form-input.blade.php
 
-## Migrations
-
-- **Formato**: snake_case
-- **Convenzione**: `create_[table]_table` o `add_[column]_to_[table]_table`
-
-```php
-✅ CORRECT
-2024_01_01_000000_create_users_table.php
-2024_01_02_000000_add_email_verified_at_to_users_table.php
-2024_01_03_000000_create_posts_table.php
-
-❌ WRONG
-create_user_table.php
-CreateUsersTable.php
-add_email_to_user.php
+// Usage in Blade: kebab-case
+<x-product-card :product="$product" />
+<x-form-input name="email" label="Email Address" />
 ```
 
 ## Routes
 
-### Route Names
-- **Formato**: dot notation
-- **Pattern**: `[resource].[action]`
-
 ```php
-✅ CORRECT
-Route::get('/posts', PostList::class)->name('posts.index');
-Route::get('/posts/create', CreatePost::class)->name('posts.create');
-Route::get('/posts/{post}', ShowPost::class)->name('posts.show');
-Route::get('/posts/{post}/edit', EditPost::class)->name('posts.edit');
+// Kebab-case URLs
+Route::get('/user-profile', ...);
+Route::get('/blog-posts', ...);
+Route::get('/products/create', ...);
 
-❌ WRONG
-->name('post-index')
-->name('createPost')
-->name('PostShow')
+// RESTful routes (use Route::resource)
+Route::resource('posts', PostController::class);
+// Creates: posts, posts/create, posts/{id}, etc.
+
+// API routes version prefix
+Route::prefix('v1')->group(function () {
+    Route::get('/users', ...);
+});
 ```
 
-### Route URIs
-- **Formato**: kebab-case
-- **Plurale per resources**
+## File Structure
 
-```php
-✅ CORRECT
-/posts
-/user-profiles
-/product-categories
-/api/v1/users
-
-❌ WRONG
-/Posts
-/user_profiles
-/userProfiles
-/ProductCategories
+```
+app/
+├── Actions/              # PascalCase
+│   ├── CreateUser.php
+│   └── ProcessOrder.php
+├── DataTransferObjects/  # PascalCase
+│   └── UserData.php
+├── Enums/                # PascalCase
+│   └── OrderStatus.php
+├── Events/               # PascalCase, past tense
+│   └── OrderCreated.php
+├── Exceptions/           # PascalCase, Exception suffix
+│   └── PaymentFailedException.php
+├── Http/
+│   ├── Controllers/      # PascalCase, Controller suffix
+│   │   └── PostController.php
+│   └── Requests/         # PascalCase, Request suffix
+│       └── StorePostRequest.php
+├── Jobs/                 # PascalCase, describes action
+│   └── SendWelcomeEmail.php
+├── Listeners/            # PascalCase
+│   └── SendOrderConfirmation.php
+├── Livewire/             # PascalCase
+│   └── CreatePost.php
+├── Models/               # PascalCase, singular
+│   └── Post.php
+├── Notifications/        # PascalCase, Notification suffix
+│   └── OrderShipped.php
+├── Policies/             # PascalCase, Policy suffix
+│   └── PostPolicy.php
+├── Repositories/         # PascalCase, Repository suffix
+│   └── PostRepository.php
+└── Services/             # PascalCase, Service suffix
+    └── PaymentService.php
 ```
 
-## Variables & Properties
+## Tailwind CSS Conventions
 
-### Variabili PHP
-- **Formato**: camelCase
+### Class Organization
 
-```php
-✅ CORRECT
-$userName
-$isPublished
-$createdAt
-$postCount
-
-❌ WRONG
-$user_name
-$UserName
-$is_published
-$PostCount
+```blade
+{{-- Order: layout → spacing → sizing → colors → typography → effects --}}
+<div class="
+    flex items-center justify-between    {{-- Layout --}}
+    px-4 py-2                            {{-- Spacing --}}
+    w-full max-w-md                      {{-- Sizing --}}
+    bg-white border border-gray-200     {{-- Colors --}}
+    text-sm font-medium                  {{-- Typography --}}
+    rounded-lg shadow-sm                 {{-- Effects --}}
+">
 ```
-
-### Proprietà Livewire Pubbliche
-- **Formato**: camelCase
-
-```php
-✅ CORRECT
-public string $searchQuery = '';
-public bool $showModal = false;
-public int $userId;
-
-❌ WRONG
-public string $search_query = '';
-public bool $ShowModal = false;
-public int $user_id;
-```
-
-### Array Keys (per dati frontend)
-- **Formato**: camelCase (per JavaScript interop)
-
-```php
-✅ CORRECT
-[
-    'userName' => 'John',
-    'isActive' => true,
-    'createdAt' => now()
-]
-
-// Per database: snake_case
-[
-    'user_name' => 'John',
-    'is_active' => true,
-    'created_at' => now()
-]
-```
-
-## CSS Classes (Tailwind)
 
 ### Component Classes
-- **Formato**: kebab-case per classi custom
 
-```css
-✅ CORRECT
-.btn-primary
-.card-header
-.form-input
+```blade
+{{-- Extract repeated patterns to components --}}
 
-❌ WRONG
-.btnPrimary
-.CardHeader
-.form_input
+{{-- ❌ Bad: Repeated classes --}}
+<button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+<button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+
+{{-- ✅ Good: Component --}}
+<x-button>Save</x-button>
+<x-button>Cancel</x-button>
 ```
 
-### Alpine.js Data
-- **Formato**: camelCase
+## Alpine.js Conventions
+
+### Directives
 
 ```html
-✅ CORRECT
-<div x-data="{ showModal: false, userName: '' }">
+<!-- Use x- prefix for Alpine directives -->
+<div x-data="{ open: false }">
+    <button @click="open = !open">Toggle</button>
+    <div x-show="open" x-transition>Content</div>
+</div>
 
-❌ WRONG
-<div x-data="{ show_modal: false, UserName: '' }">
+<!-- Data property names: camelCase -->
+<div x-data="{
+    isOpen: false,
+    selectedId: null,
+    itemCount: 0
+}">
 ```
 
-## Test Files & Methods
+## Testing
 
-### File dei Test
-- **Formato**: PascalCase
-- **Suffisso**: `Test`
+### Test Files
 
 ```php
-✅ CORRECT
+// tests/Feature/
+CreatePostTest.php          // Test suffix
+UserAuthenticationTest.php
+OrderProcessingTest.php
+
+// tests/Unit/
 UserTest.php
-PostListTest.php
-CreateUserTest.php
-
-❌ WRONG
-user_test.php
-test_user.php
-TestUser.php
+PostTest.php
 ```
 
-### Metodi Test (Pest)
-- **Formato**: stringa descrittiva
+### Test Methods (Pest)
 
 ```php
-✅ CORRECT
-test('can create a user');
-test('validates required fields');
-it('displays posts correctly');
+// Descriptive test names
+test('user can create a post', function () {});
+test('guest cannot access dashboard', function () {});
+test('order total calculates correctly', function () {});
 
-❌ WRONG
-test('test1');
-test('createUser');
+// Or it() syntax
+it('validates required fields', function () {});
+it('sends email after order', function () {});
 ```
 
-## Config Files
+## Git Conventions
 
-- **Formato**: kebab-case
-- **Posizione**: `config/`
+### Branch Names
 
+```bash
+# Format: type/description-in-kebab-case
+feature/user-authentication
+bugfix/fix-payment-processing
+hotfix/security-patch
+refactor/update-order-service
 ```
-✅ CORRECT
-app.php
-database.php
-mail-settings.php
 
-❌ WRONG
-App.php
-data_base.php
-mailSettings.php
+### Commit Messages
+
+```bash
+# Format: type: description
+feat: add user registration
+fix: resolve payment processing error
+refactor: improve post service
+test: add order tests
+docs: update API documentation
+style: format code with Pint
 ```
 
 ## Environment Variables
 
-- **Formato**: SCREAMING_SNAKE_CASE
-- **File**: `.env`
-
 ```bash
-✅ CORRECT
-APP_NAME="My App"
+# UPPER_SNAKE_CASE
+APP_NAME="My Application"
 DB_CONNECTION=mysql
-MAIL_FROM_ADDRESS="hello@example.com"
-CUSTOM_API_KEY="abc123"
-
-❌ WRONG
-appName="My App"
-db-connection=mysql
-mailFromAddress="hello@example.com"
+MAIL_FROM_ADDRESS=noreply@example.com
+STRIPE_SECRET_KEY=sk_test_...
 ```
 
-## Riepilogo Rapido
+## Quick Reference
 
-| Elemento | Formato | Esempio |
-|----------|---------|---------|
-| Livewire Class | PascalCase | `UserProfile` |
-| Blade File | kebab-case | `user-profile.blade.php` |
-| Model | PascalCase (singolare) | `User` |
-| Table | snake_case (plurale) | `users` |
-| Column | snake_case | `created_at` |
-| Variable | camelCase | `$userName` |
+| Type | Convention | Example |
+|------|-----------|---------|
+| Class | PascalCase | `UserController` |
 | Method | camelCase | `createUser()` |
-| Route Name | dot.notation | `posts.index` |
-| Route URI | kebab-case | `/user-profiles` |
-| Service | PascalCase + Service | `UserService` |
-| Action | Verb + Noun | `CreateUser` |
-| Event | Noun + Past Tense | `UserCreated` |
-| Job | Verb + Noun | `ProcessPayment` |
+| Variable | camelCase | `$userName` |
+| Constant | UPPER_SNAKE_CASE | `ORDER_STATUS` |
+| Table | plural_snake_case | `order_items` |
+| Column | snake_case | `created_at` |
+| Route | kebab-case | `/user-profile` |
+| View | kebab-case | `user-profile.blade.php` |
+| Component | PascalCase (class) | `UserProfile` |
+| Component | kebab-case (view) | `user-profile.blade.php` |
+| Event | kebab-case | `post-created` |
 
----
+## Benefits of Consistent Naming
 
-**Nota**: Queste convenzioni seguono gli standard Laravel e le best practices della community TALL Stack.
+- ✅ **Readability**: Code is self-documenting
+- ✅ **Maintainability**: Easy to find and update code
+- ✅ **Collaboration**: Team understands code structure
+- ✅ **Productivity**: Less time deciding on names
+- ✅ **Professionalism**: Shows attention to detail
+
+## Tools to Enforce
+
+- **Laravel Pint**: PHP code style fixer
+- **PHPStan**: Static analysis for type safety
+- **ESLint**: JavaScript/Alpine.js linting
+- **Prettier**: Blade template formatting

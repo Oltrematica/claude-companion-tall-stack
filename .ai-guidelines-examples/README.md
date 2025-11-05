@@ -1,176 +1,202 @@
 # Laravel Boost AI Guidelines Examples
 
-Questi file sono **esempi** di guidelines da copiare nella cartella `.ai/guidelines/` del tuo progetto Laravel dopo aver installato Laravel Boost.
+These files are **examples** of guidelines to copy into your Laravel project's `.ai/guidelines/` folder after installing Laravel Boost.
 
-## Come usarli
+## How to Use
 
-### 1. Installa Laravel Boost
+### 1. Install Laravel Boost
 
 ```bash
 composer require laravel/boost --dev
 php artisan boost:install
 ```
 
-### 2. Copia i file nella cartella `.ai/guidelines/`
+### 2. Copy Files to `.ai/guidelines/`
 
 ```bash
-# Dalla root del tuo progetto TALL Stack
+# From your TALL Stack project root
 cp .claude/.ai-guidelines-examples/tall-stack.blade.php .ai/guidelines/
 ```
 
-### 3. Personalizza per il tuo progetto
+### 3. Customize for Your Project
 
-Edita `.ai/guidelines/tall-stack.blade.php` e aggiungi:
-- Pattern specifici del tuo team
-- Convenzioni di naming custom
-- Business logic patterns
-- Regole di validazione comuni
+Edit `.ai/guidelines/tall-stack.blade.php` to add:
+- Your project-specific conventions
+- Custom patterns you use
+- Team standards
+- Architectural decisions
 
-## File Disponibili
+## What Are AI Guidelines?
+
+AI Guidelines are **dynamic templates** that Laravel Boost reads to provide context-aware assistance. They're Blade files, so they can:
+
+- Access your application state: `{{ app()->version() }}`
+- Check installed packages: `@if(class_exists('Livewire\Livewire'))`
+- Read configuration: `{{ config('app.name') }}`
+- Query your database schema
+- Inspect your models and relationships
+
+## Available Examples
 
 ### `tall-stack.blade.php`
 
-Guidelines complete per sviluppo TALL Stack:
+Complete guidelines for TALL Stack development including:
+- Laravel best practices
 - Livewire component patterns
 - Tailwind CSS conventions
-- Alpine.js integration
-- Form handling
-- File uploads
-- Performance optimization
-- Testing patterns
+- Alpine.js patterns
+- Database design
+- Security practices
+- Testing strategies
 
-**Quando usarlo**: Sempre! Questo è il file base per ogni progetto TALL Stack.
+## Creating Custom Guidelines
 
-## Creare Guidelines Custom
-
-### Struttura Base
+Create new `.blade.php` files in `.ai/guidelines/`:
 
 ```blade
-# My Custom Guidelines
+{{-- .ai/guidelines/my-custom-patterns.blade.php --}}
 
-## Section Title
+# My Project Patterns
 
-### Subsection
+## Authentication
+We use Laravel Sanctum with these specific flows:
+- API authentication via tokens
+- Session-based for web routes
 
-Pattern or rule here...
+Current setup:
+- Laravel: {{ app()->version() }}
+- Sanctum: {{ class_exists('Laravel\Sanctum\Sanctum') ? 'installed' : 'not installed' }}
 
-## Laravel Dynamic Content
+## Database Conventions
+@php
+$tables = DB::select('SHOW TABLES');
+@endphp
 
-You can use Laravel helpers and Blade:
-- App version: {{ app()->version() }}
-- Environment: {{ app()->environment() }}
-- Installed packages: @foreach(...)
+Current tables: {{ count($tables) }}
+
+Our naming conventions:
+- Use singular model names
+- Pivot tables: alphabetical order (e.g., `post_user`)
+- Timestamps always included
 ```
 
-### Best Practices
+## Benefits
 
-1. **Organizza per Topic**: Crea file separati per concerns diversi
-   - `tall-stack.blade.php` - Generale TALL
-   - `authentication.blade.php` - Auth patterns
-   - `api.blade.php` - API development
-   - `testing.blade.php` - Testing strategies
-
-2. **Usa Blade per Context Dinamico**: Boost può leggere configurazione Laravel
-   ```blade
-   @if(config('app.debug'))
-   ## Development Mode
-   Include detailed error messages...
-   @endif
-   ```
-
-3. **Includi Esempi di Codice**: Claude Code impara meglio con esempi
-   ```blade
-   ## Good Pattern
-   ````php
-   // Code example
-   ````
-
-   ## Anti-Pattern
-   ````php
-   // What NOT to do
-   ````
-   ```
-
-4. **Sii Specifico**: Più dettagli = codice migliore generato
-   ```blade
-   ❌ "Use Livewire for components"
-   ✅ "Use Livewire full-page components for routes, nested components for reusable UI blocks. Keep components thin with business logic in service classes."
-   ```
-
-## Integrazione con .claude/
-
-Laravel Boost (`.ai/`) e Claude Code prompts (`.claude/`) lavorano insieme:
-
-**.claude/**
-- High-level architectural patterns
-- Scaffolding commands
-- Team workflows
-- Project structure
-
-**.ai/guidelines/**
-- Code-level conventions
-- Framework-specific patterns
-- Best practices
-- Version-specific syntax
-
-## Esempio: Workflow Completo
-
+**Without Boost:**
 ```
-User: "Create a product CRUD with image upload"
-
-┌─────────────────────────────────────┐
-│ 1. Claude legge .claude/commands/   │
-│    /tall-crud per scaffolding       │
-└─────────────────────────────────────┘
-           ↓
-┌─────────────────────────────────────┐
-│ 2. Boost MCP fornisce:              │
-│    - Livewire version (3.x)         │
-│    - Database schema                │
-│    - Installed packages             │
-└─────────────────────────────────────┘
-           ↓
-┌─────────────────────────────────────┐
-│ 3. Claude legge .ai/guidelines/     │
-│    tall-stack.blade.php per:        │
-│    - File upload pattern            │
-│    - Validation rules               │
-│    - Tailwind form styling          │
-└─────────────────────────────────────┘
-           ↓
-┌─────────────────────────────────────┐
-│ 4. Codice generato è:               │
-│    ✅ Version-correct                │
-│    ✅ Follows your patterns          │
-│    ✅ Uses correct schema            │
-│    ✅ Production-ready               │
-└─────────────────────────────────────┘
+User: "Create a user registration component"
+Claude: Creates generic component
 ```
 
-## Troubleshooting
+**With Boost + Guidelines:**
+```
+User: "Create a user registration component"
+Claude:
+  1. Checks your Livewire version (via Boost)
+  2. Reads your guidelines
+  3. Sees you use 2FA and custom validation
+  4. Creates component matching your exact patterns
+```
 
-### Guidelines non applicate
+## Best Practices
 
-1. **Verifica posizione file**: Deve essere in `.ai/guidelines/`
-2. **Estensione corretta**: Usa `.blade.php`
-3. **Riavvia Claude Code**: Per ricaricare configurazione
-4. **Controlla sintassi Blade**: Errori prevengono il parsing
+### DO
+- ✅ Keep guidelines updated as project evolves
+- ✅ Document "why" behind patterns, not just "what"
+- ✅ Use Blade for dynamic, context-aware guidelines
+- ✅ Share guidelines with team via version control
+- ✅ Include examples of correct and incorrect patterns
 
-### Conflitti tra Guidelines
+### DON'T
+- ❌ Don't include sensitive data or secrets
+- ❌ Don't make guidelines too verbose (Claude has token limits)
+- ❌ Don't duplicate what's already in framework docs
+- ❌ Don't forget to update when conventions change
 
-L'ordine di precedenza è:
-1. `.ai/guidelines/` (custom - massima priorità)
-2. Boost built-in guidelines
-3. `.claude/` prompts (high-level)
+## Integration with Claude Code
 
-Se hai conflitti, la tua custom guideline vince.
+These guidelines work seamlessly with:
+- **Agents** (`.claude/agents/`): Specialized expertise
+- **Commands** (`.claude/commands/`): Automated operations
+- **Prompts** (`.claude/prompts/`): Reusable snippets
 
-## Risorse
+The full stack:
+```
+User Request
+    ↓
+Claude Code reads:
+    1. Slash command (what to do)
+    2. Agent expertise (how to do it)
+    3. Boost guidelines (your patterns)
+    4. Boost MCP tools (your context)
+    ↓
+Perfect, project-specific code
+```
+
+## Examples in Action
+
+### Before (Generic)
+```php
+class UserRegistration extends Component
+{
+    public $email;
+    public $password;
+
+    public function register()
+    {
+        User::create([...]);
+    }
+}
+```
+
+### After (Your Patterns)
+```php
+class UserRegistration extends Component
+{
+    use WithRateLimiting; // Your pattern
+
+    #[Locked]
+    public string $email = '';
+
+    #[Locked]
+    public string $password = '';
+
+    public function register(UserService $service) // Your pattern
+    {
+        $this->rateLimit(5); // Your pattern
+
+        $validated = $this->validate([
+            'email' => ['required', 'email', Rules\Email::default()], // Your rule
+            'password' => $this->passwordRules(), // Your method
+        ]);
+
+        $user = $service->createUser($validated); // Your service
+
+        $this->dispatch('user-registered', $user->id); // Your event
+
+        $this->redirectRoute('dashboard');
+    }
+}
+```
+
+## Resources
 
 - [Laravel Boost Documentation](https://github.com/laravel/boost)
 - [Model Context Protocol](https://modelcontextprotocol.io)
-- [Blade Templates](https://laravel.com/docs/blade)
+- [Claude Code Documentation](https://docs.claude.com/claude-code)
 
-## Contribuire
+## Need Help?
 
-Se crei guidelines utili per TALL Stack, considera di condividerle con la community!
+Ask Claude Code:
+```
+Help me create AI guidelines for [your specific pattern]
+```
+
+Or use the setup wizard:
+```
+/boost-setup
+```
+
+---
+
+**Pro Tip**: Start with the included `tall-stack.blade.php` example and gradually customize it as you establish your project's patterns.

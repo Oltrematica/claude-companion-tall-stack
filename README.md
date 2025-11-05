@@ -1,55 +1,55 @@
 # TALL Stack AI Assistant
 
-Un sistema completo di agenti AI per Claude Code, ottimizzato per lo sviluppo di applicazioni **TALL Stack** (Tailwind CSS, Alpine.js, Laravel, Livewire) con integrazione nativa per **Laravel Boost MCP**.
+A complete AI agent system for Claude Code, optimized for developing **TALL Stack** applications (Tailwind CSS, Alpine.js, Laravel, Livewire) with native **Laravel Boost MCP** integration.
 
-## 🎯 Caratteristiche
+## 🎯 Features
 
-- **Agenti Specializzati**: Esperti dedicati per Laravel, Livewire, Tailwind e Alpine.js
-- **Laravel Boost MCP Integration**: Sfrutta gli strumenti MCP di Boost per sviluppo context-aware
-- **Comandi Rapidi**: Slash commands per operazioni comuni TALL Stack
-- **AI Guidelines**: Template per Boost guidelines personalizzate
-- **Best Practices**: Seguono le convenzioni ufficiali e le best practices della community
-- **Completo**: Copre tutto il ciclo di sviluppo, dal setup al deployment
-- **Modulare**: Facilmente estendibile e personalizzabile
+- **Specialized Agents**: Dedicated experts for Laravel, Livewire, Tailwind, and Alpine.js
+- **Laravel Boost MCP Integration**: Leverage Boost's MCP tools for context-aware development
+- **Quick Commands**: Slash commands for common TALL Stack operations
+- **AI Guidelines**: Templates for custom Boost guidelines
+- **Best Practices**: Follow official conventions and community best practices
+- **Complete**: Covers the entire development cycle, from setup to deployment
+- **Modular**: Easily extendable and customizable
 
-## 📋 Prerequisiti
+## 📋 Prerequisites
 
-- [Claude Code](https://claude.ai/claude-code) installato
-- Progetto Laravel 10+ con Livewire 3+
-- Node.js e NPM per la gestione degli asset
-- **(Opzionale)** [Laravel Boost](https://github.com/laravel/boost) per MCP context-aware development
+- [Claude Code](https://claude.ai/claude-code) installed
+- Laravel 10+ project with Livewire 3+
+- Node.js and NPM for asset management
+- **(Optional)** [Laravel Boost](https://github.com/laravel/boost) for MCP context-aware development
 
 ## 🚀 Quick Start
 
-### 1. Installazione Base
+### 1. Base Installation
 
-Clona o copia la cartella `.claude` nella root del tuo progetto Laravel:
+Clone or copy the `.claude` folder to the root of your Laravel project:
 
 ```bash
-# Se questo è un repository separato
+# If this is a separate repository
 cp -r /path/to/tall-stack-ai-assistant/.claude /path/to/your-laravel-project/
 
-# Oppure inizializza direttamente nel tuo progetto
+# Or initialize directly in your project
 cd /path/to/your-laravel-project
 mkdir -p .claude/{agents,commands,prompts}
 ```
 
-### 2. (Opzionale) Setup Laravel Boost
+### 2. (Optional) Laravel Boost Setup
 
-Per un'esperienza AI potenziata con context awareness:
+For an enhanced AI experience with context awareness:
 
 ```bash
-# Installa Laravel Boost
+# Install Laravel Boost
 composer require laravel/boost --dev
 php artisan boost:install
 
-# Configura con slash command
+# Configure with slash command
 /boost-setup
 ```
 
-### 3. Struttura del Progetto
+### 3. Project Structure
 
-**Setup Base (.claude/):**
+**Base Setup (.claude/):**
 ```
 your-laravel-project/
 ├── .claude/
@@ -58,12 +58,21 @@ your-laravel-project/
 │   │   ├── tall-stack-laravel.md            # Laravel expert
 │   │   ├── tall-stack-livewire.md           # Livewire expert
 │   │   ├── tall-stack-frontend.md           # UI/UX expert
+│   │   ├── tall-stack-database.md           # Database expert
+│   │   ├── tall-stack-security.md           # Security expert
+│   │   ├── tall-stack-testing.md            # Testing expert
 │   │   └── boost-mcp-integration.md         # Boost MCP guide
 │   ├── commands/
 │   │   ├── tall-new-component.md
 │   │   ├── tall-crud.md
+│   │   ├── tall-refactor.md
+│   │   ├── tall-security.md
+│   │   ├── tall-api.md
+│   │   ├── tall-search.md
+│   │   ├── tall-export.md
 │   │   ├── tall-optimize.md
 │   │   ├── tall-test.md
+│   │   ├── tall-monitor.md
 │   │   ├── tall-deploy.md
 │   │   └── boost-setup.md                   # Boost setup wizard
 │   └── .ai-guidelines-examples/             # Boost guidelines templates
@@ -74,7 +83,7 @@ your-laravel-project/
 └── ...
 ```
 
-**Con Laravel Boost (.ai/):**
+**With Laravel Boost (.ai/):**
 ```
 your-laravel-project/
 ├── .ai/                                      # Created by boost:install
@@ -85,62 +94,83 @@ your-laravel-project/
 └── ...
 ```
 
-### 4. Primo Utilizzo
+### 4. First Use
 
-**Setup standard:**
+**Standard setup:**
 ```
 /tall-crud
 ```
 
-**Con Laravel Boost:**
+**With Laravel Boost:**
 ```bash
 # 1. Setup Boost
 /boost-setup
 
-# 2. Verifica context awareness
+# 2. Verify context awareness
 What Livewire version is installed?
 
-# 3. Usa comandi TALL con context
+# 3. Use TALL commands with context
 /tall-crud
 ```
 
-## 📚 Documentazione
+## 📚 Documentation
 
-### Agenti Disponibili
+### Available Agents
 
-#### 🎯 Agente Principale: `tall-stack`
+#### 🎯 Main Agent: `tall-stack`
 
-L'agente coordinatore per decisioni architetturali e domande generali.
+The coordinator agent for architectural decisions and general questions.
 
-**Esempio di utilizzo:**
+**Example usage:**
 ```
-Qual è il modo migliore per strutturare un'applicazione multi-tenant nel TALL Stack?
+What's the best way to structure a multi-tenant application in the TALL Stack?
 ```
 
-#### 🔧 Sub-Agents Specializzati
+#### 🔧 Specialized Sub-Agents
 
-1. **`tall-stack-laravel`** - Esperto Backend
-   - Database design e Eloquent
+1. **`tall-stack-laravel`** - Backend Expert
+   - Database design and Eloquent
    - Query optimization
    - Jobs, queues, events
    - API development
    - Testing
 
-2. **`tall-stack-livewire`** - Esperto Componenti Reattivi
-   - Componenti Livewire 3.x
-   - Data binding e validation
+2. **`tall-stack-livewire`** - Reactive Components Expert
+   - Livewire 3.x components
+   - Data binding and validation
    - Event handling
    - File uploads
    - Performance optimization
 
-3. **`tall-stack-frontend`** - Esperto UI/UX
+3. **`tall-stack-frontend`** - UI/UX Expert
    - Tailwind CSS patterns
    - Alpine.js interactivity
    - Responsive design
    - Accessibility
    - Component styling
 
-4. **`boost-mcp-integration`** - Esperto Laravel Boost
+4. **`tall-stack-database`** - Database Specialist
+   - Query optimization
+   - N+1 problem solving
+   - Indexing strategies
+   - Complex relationships
+   - Performance tuning
+
+5. **`tall-stack-security`** - Security Expert
+   - OWASP Top 10
+   - Authentication & authorization
+   - Input validation
+   - Secure coding practices
+   - Security audits
+
+6. **`tall-stack-testing`** - Testing Expert
+   - PHPUnit/Pest tests
+   - Livewire testing
+   - Browser testing (Dusk)
+   - TDD/BDD practices
+   - Test coverage
+
+7. **`boost-mcp-integration`** - Laravel Boost Expert
    - MCP server configuration
    - AI Guidelines setup
    - Context-aware development
@@ -151,11 +181,11 @@ Qual è il modo migliore per strutturare un'applicazione multi-tenant nel TALL S
 
 #### `/tall-new-component`
 
-Crea un nuovo componente Livewire con styling Tailwind.
+Create a new Livewire component with Tailwind styling.
 
-**Genera:**
-- Classe PHP del componente
-- Vista Blade con Tailwind
+**Generates:**
+- PHP component class
+- Blade view with Tailwind
 - Validation rules
 - Event handling
 - Loading states
@@ -164,23 +194,169 @@ Crea un nuovo componente Livewire con styling Tailwind.
 
 #### `/tall-crud`
 
-Genera un'interfaccia CRUD completa per un model.
+Generate a complete CRUD interface for a model.
 
-**Genera:**
-- Model con migration
-- Factory e seeder
-- Componenti Livewire (List, Create/Edit)
+**Generates:**
+- Model with migration
+- Factory and seeder
+- Livewire components (List, Create/Edit)
 - Routes
-- Views con Tailwind
-- Validation e authorization
+- Views with Tailwind
+- Validation and authorization
+
+---
+
+#### `/tall-refactor`
+
+Refactor existing components following best practices.
+
+**Analyzes:**
+- Performance issues
+- Code quality
+- Security concerns
+- Best practices violations
+- Optimization opportunities
+
+---
+
+#### `/tall-security`
+
+Comprehensive security audit for your application.
+
+**Checks:**
+- OWASP Top 10 vulnerabilities
+- Authentication & authorization
+- Input validation
+- Data protection
+- Configuration security
+- Dependencies
+
+---
+
+#### `/tall-api`
+
+Generate RESTful API resources for models.
+
+**Creates:**
+- API Resource classes
+- API Controller
+- Form Requests
+- Routes
+- Policy
+- API tests
+
+---
+
+#### `/tall-search`
+
+Add full-text search functionality to models.
+
+**Implements:**
+- Laravel Scout setup
+- Meilisearch/Algolia integration
+- Livewire search component
+- Filters and facets
+- Real-time search
+
+---
+
+#### `/tall-export`
+
+Add data export functionality (CSV, Excel, PDF).
+
+**Creates:**
+- Export classes
+- Livewire export component
+- Multiple format support
+- Queued exports for large datasets
+- PDF templates
+
+---
+
+#### `/tall-refactor`
+
+Refactoring di componenti esistenti seguendo le best practices.
+
+**Analizza:**
+- Performance issues
+- Code quality
+- Security concerns
+- Best practices violations
+- Opportunità di ottimizzazione
+
+---
+
+#### `/tall-security`
+
+Audit di sicurezza completo per l'applicazione.
+
+**Controlla:**
+- Vulnerabilità OWASP Top 10
+- Authentication & authorization
+- Input validation
+- Data protection
+- Sicurezza configurazione
+
+---
+
+#### `/tall-api`
+
+Genera risorse API RESTful per i model.
+
+**Crea:**
+- Classi API Resource
+- Controller API
+- Form Requests
+- Routes
+- Policy
+- API tests
+
+---
+
+#### `/tall-search`
+
+Aggiungi funzionalità di ricerca full-text ai model.
+
+**Implementa:**
+- Setup Laravel Scout
+- Integrazione Meilisearch/Algolia
+- Componente Livewire per la ricerca
+- Filtri e facets
+- Ricerca in tempo reale
+
+---
+
+#### `/tall-export`
+
+Aggiungi funzionalità di esportazione dati (CSV, Excel, PDF).
+
+**Crea:**
+- Classi di export
+- Componente Livewire per l'export
+- Supporto multipli formati
+- Export in coda per grandi dataset
+- Template PDF
+
+---
+
+#### `/tall-monitor`
+
+Setup monitoring delle performance e tracking degli errori.
+
+**Configura:**
+- Laravel Telescope
+- Laravel Pulse
+- Integrazione Sentry
+- Health check endpoints
+- Metriche di performance
 
 ---
 
 #### `/tall-optimize`
 
-Analizza e ottimizza l'applicazione per performance.
+Analyze and optimize application performance.
 
-**Analizza:**
+**Analyzes:**
 - Database queries (N+1 problems)
 - Livewire component performance
 - Frontend optimization
@@ -189,24 +365,37 @@ Analizza e ottimizza l'applicazione per performance.
 
 ---
 
+#### `/tall-monitor`
+
+Setup performance monitoring and error tracking.
+
+**Configures:**
+- Laravel Telescope
+- Laravel Pulse
+- Sentry integration
+- Health check endpoints
+- Performance metrics
+
+---
+
 #### `/tall-test`
 
-Genera test completi per componenti e features.
+Generate comprehensive tests for components and features.
 
-**Crea:**
-- Feature tests per Livewire
-- Unit tests per models
-- Test per validation
-- Test per authorization
+**Creates:**
+- Feature tests for Livewire
+- Unit tests for models
+- Validation tests
+- Authorization tests
 - Browser tests (optional)
 
 ---
 
 #### `/tall-deploy`
 
-Guida completa al deployment in produzione.
+Complete production deployment guide.
 
-**Include:**
+**Includes:**
 - Pre-deployment checklist
 - Server configuration
 - Queue workers setup
@@ -218,79 +407,79 @@ Guida completa al deployment in produzione.
 
 #### `/boost-setup`
 
-Wizard completo per configurare Laravel Boost MCP con TALL Stack.
+Complete wizard to configure Laravel Boost MCP with TALL Stack.
 
-**Esegue:**
-- Installa Laravel Boost
-- Configura MCP server per Claude Code
+**Performs:**
+- Install Laravel Boost
+- Configure MCP server for Claude Code
 - Setup TALL Stack AI guidelines
-- Testa integrazione
-- Documenta per il team
+- Test integration
+- Team documentation
 
 ## 🔋 Laravel Boost Integration
 
-### Cos'è Laravel Boost?
+### What is Laravel Boost?
 
-Laravel Boost è un **MCP (Model Context Protocol) server** che fornisce a Claude Code oltre 15 strumenti specializzati per comprendere il tuo progetto Laravel in tempo reale.
+Laravel Boost is an **MCP (Model Context Protocol) server** that provides Claude Code with 15+ specialized tools to understand your Laravel project in real-time.
 
-### Perché Usarlo con TALL Stack?
+### Why Use It with TALL Stack?
 
 **Context Awareness:**
-- Claude conosce la tua versione di Livewire
-- Legge il database schema reale
-- Accede alla configurazione attuale
-- Cerca documentazione versioned
+- Claude knows your Livewire version
+- Reads your actual database schema
+- Accesses current configuration
+- Searches versioned documentation
 
-**Strumenti MCP Disponibili:**
+**Available MCP Tools:**
 1. **Application Context**: PHP/Laravel versions, packages, models
 2. **Database Operations**: Schema inspection, query execution
 3. **Code Discovery**: Routes, commands, config
 4. **Development Utils**: Logs, Tinker REPL, URL generation
-5. **Documentation API**: 17,000+ Laravel docs con semantic search
+5. **Documentation API**: 17,000+ Laravel docs with semantic search
 
-### Setup Rapido
+### Quick Setup
 
 ```bash
-# 1. Installa
+# 1. Install
 composer require laravel/boost --dev
 php artisan boost:install
 
-# 2. Configura per TALL Stack
+# 2. Configure for TALL Stack
 /boost-setup
 
-# 3. Copia guidelines
+# 3. Copy guidelines
 cp .claude/.ai-guidelines-examples/tall-stack.blade.php .ai/guidelines/
 ```
 
-### Workflow con Boost
+### Workflow with Boost
 
 ```
 User: "Create a product CRUD with image upload"
 
-1. Claude usa .claude/commands/tall-crud
+1. Claude uses .claude/commands/tall-crud
    ↓ Scaffolding pattern
 
-2. Boost MCP fornisce context
+2. Boost MCP provides context
    ↓ Livewire 3.x, database schema
 
-3. Claude legge .ai/guidelines/tall-stack.blade.php
+3. Claude reads .ai/guidelines/tall-stack.blade.php
    ↓ File upload pattern, validations
 
-4. Codice generato
+4. Generated code
    ✅ Version-correct
    ✅ Schema-aware
    ✅ Pattern-following
    ✅ Production-ready
 ```
 
-## 💡 Esempi Pratici
+## 💡 Practical Examples
 
-### Creare un Blog Post Manager
+### Creating a Blog Post Manager
 
 ```
 /tall-crud
 
-# Quando richiesto:
+# When prompted:
 Model: Post
 Fields:
   - title: string, required, min:3
@@ -302,26 +491,26 @@ Relationships:
 Soft deletes: Yes
 ```
 
-### Con Laravel Boost Context
+### With Laravel Boost Context
 
 ```
-# Prima: Boost analizza database
+# First: Boost analyzes database
 What tables exist in the database?
 
-# Claude risponde con schema reale
+# Claude responds with actual schema
 
-# Poi: Genera CRUD context-aware
+# Then: Generate context-aware CRUD
 /tall-crud Post
 
-# Result: CRUD perfettamente integrato con schema esistente
+# Result: CRUD perfectly integrated with existing schema
 ```
 
-### Creare un Modal per Conferma Eliminazione
+### Creating a Delete Confirmation Modal
 
 ```
 /tall-new-component
 
-# Quando richiesto:
+# When prompted:
 Name: DeleteConfirmation
 Type: modal
 Features:
@@ -331,21 +520,21 @@ Features:
   - Emit event on delete
 ```
 
-### Ottimizzare un Componente Lento
+### Optimizing a Slow Component
 
 ```
 /tall-optimize
 
-# Claude analizzerà il progetto e suggerirà:
-- Eager loading mancante
-- Computed properties da aggiungere
-- Lazy loading per componenti pesanti
+# Claude will analyze the project and suggest:
+- Missing eager loading
+- Computed properties to add
+- Lazy loading for heavy components
 - Caching strategies
 ```
 
-## 🎨 Workflow Consigliato
+## 🎨 Recommended Workflow
 
-### Senza Laravel Boost
+### Without Laravel Boost
 
 ```bash
 # 1. Setup
@@ -355,7 +544,7 @@ composer require livewire/livewire
 npm install -D tailwindcss
 cp -r /path/to/.claude .
 
-# 2. Sviluppo
+# 2. Development
 /tall-crud Product
 /tall-new-component ProductCard
 /tall-test
@@ -365,10 +554,10 @@ cp -r /path/to/.claude .
 /tall-deploy
 ```
 
-### Con Laravel Boost
+### With Laravel Boost
 
 ```bash
-# 1. Setup Enhanced
+# 1. Enhanced Setup
 composer create-project laravel/laravel my-app
 cd my-app
 composer require livewire/livewire
@@ -376,8 +565,8 @@ npm install -D tailwindcss
 cp -r /path/to/.claude .
 /boost-setup
 
-# 2. Sviluppo Context-Aware
-# Claude ora conosce tutto del tuo progetto
+# 2. Context-Aware Development
+# Claude now knows everything about your project
 Create a product management system with categories
 
 # 3. Deploy
@@ -385,11 +574,11 @@ Create a product management system with categories
 /tall-deploy
 ```
 
-## 🔧 Personalizzazione
+## 🔧 Customization
 
-### Aggiungere Pattern del Tuo Progetto
+### Adding Your Project Patterns
 
-**Senza Boost** - Edita [.claude/agents/tall-stack.md](.claude/agents/tall-stack.md):
+**Without Boost** - Edit `.claude/agents/tall-stack.md`:
 
 ```markdown
 ## My Project Patterns
@@ -398,7 +587,7 @@ Create a product management system with categories
 We use Laravel Sanctum with custom guards...
 ```
 
-**Con Boost** - Edita `.ai/guidelines/tall-stack.blade.php`:
+**With Boost** - Edit `.ai/guidelines/tall-stack.blade.php`:
 
 ```blade
 ## My Project Patterns
@@ -412,21 +601,21 @@ We use Laravel Sanctum with custom guards...
 - Methods: camelCase
 ```
 
-### Creare Comandi Custom
+### Creating Custom Commands
 
-Crea `.claude/commands/my-custom-command.md`:
+Create `.claude/commands/my-custom-command.md`:
 
 ```markdown
 ---
-description: La mia operazione custom
+description: My custom operation
 ---
 
-Istruzioni dettagliate per Claude su cosa fare...
+Detailed instructions for Claude on what to do...
 ```
 
-## 📦 Stack Tecnologico
+## 📦 Tech Stack
 
-Questo sistema è ottimizzato per:
+This system is optimized for:
 
 - **Laravel** 10+
 - **Livewire** 3+
@@ -434,36 +623,36 @@ Questo sistema è ottimizzato per:
 - **Alpine.js** 3+
 - **PHP** 8.1+
 
-### Laravel Boost (Opzionale ma Raccomandato)
+### Laravel Boost (Optional but Recommended)
 
-**Cosa Aggiunge:**
-- **MCP Server**: 15+ tools per context awareness
-- **AI Guidelines**: Blade templates per pattern custom
+**What It Adds:**
+- **MCP Server**: 15+ tools for context awareness
+- **AI Guidelines**: Blade templates for custom patterns
 - **Documentation API**: Semantic search in 17K+ docs
-- **Version Aware**: Codice specifico per le tue versioni
+- **Version Aware**: Code specific to your versions
 
-**Quando Usarlo:**
-- ✅ Progetti di media/grande dimensione
-- ✅ Team che condivide convenzioni
+**When to Use:**
+- ✅ Medium/large projects
+- ✅ Teams sharing conventions
 - ✅ Need for version-specific code generation
 - ✅ Complex database schemas
-- ❌ Progetti tiny/prototype (overkill)
+- ❌ Tiny/prototype projects (overkill)
 
-**Benefici:**
+**Benefits:**
 1. **Faster Development**: Context eliminates guesswork
 2. **Better Code Quality**: Version-correct, schema-aware
 3. **Team Consistency**: Shared AI guidelines
 4. **Learning Curve**: AI understands your codebase
 
-## 📄 Licenza
+## 📄 License
 
-MIT License - Sentiti libero di usare e modificare per i tuoi progetti!
+MIT License - Feel free to use and modify for your projects!
 
-## 🌟 Crediti
+## 🌟 Credits
 
-Creato per semplificare lo sviluppo TALL Stack con l'aiuto di Claude AI.
+Created to simplify TALL Stack development with Claude AI assistance.
 
-### Link Utili
+### Useful Links
 
 - [Laravel Documentation](https://laravel.com/docs)
 - [Laravel Boost](https://github.com/laravel/boost) - MCP server for AI development
@@ -473,18 +662,18 @@ Creato per semplificare lo sviluppo TALL Stack con l'aiuto di Claude AI.
 - [Claude Code Documentation](https://docs.claude.com/claude-code)
 - [Model Context Protocol](https://modelcontextprotocol.io)
 
-## 💬 Supporto
+## 💬 Support
 
-Hai domande? Chiedi direttamente a Claude Code usando gli agenti!
+Have questions? Ask Claude Code directly using the agents!
 
 ```
-Come posso implementare un sistema di notifiche real-time nel TALL Stack?
+How can I implement a real-time notification system in TALL Stack?
 ```
 
-**Con Boost MCP**: Claude può analizzare il tuo progetto e dare risposte specifiche!
+**With Boost MCP**: Claude can analyze your project and give specific answers!
 
 ---
 
 **Happy Coding! 🚀**
 
-Ultimo aggiornamento: 2025-01-05 | Versione: 2.0.0 (Laravel Boost Integration)
+Last updated: 2025-11-05 | Version: 2.1.0 (Enhanced Commands & Agents)
