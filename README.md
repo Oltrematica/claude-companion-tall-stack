@@ -275,37 +275,37 @@ Add data export functionality (CSV, Excel, PDF).
 
 #### `/tall-refactor`
 
-Refactoring di componenti esistenti seguendo le best practices.
+Refactor existing components following best practices.
 
-**Analizza:**
+**Analyze:**
 - Performance issues
 - Code quality
 - Security concerns
 - Best practices violations
-- Opportunità di ottimizzazione
+- Optimization opportunities
 
 ---
 
 #### `/tall-security`
 
-Audit di sicurezza completo per l'applicazione.
+Complete security audit for your application.
 
-**Controlla:**
-- Vulnerabilità OWASP Top 10
+**Check:**
+- OWASP Top 10 Vulnerabilities
 - Authentication & authorization
 - Input validation
 - Data protection
-- Sicurezza configurazione
+- Configuration security
 
 ---
 
 #### `/tall-api`
 
-Genera risorse API RESTful per i model.
+Generate RESTful API resources for models.
 
 **Crea:**
-- Classi API Resource
-- Controller API
+- API Resource Classes
+- API Controller
 - Form Requests
 - Routes
 - Policy
@@ -315,42 +315,42 @@ Genera risorse API RESTful per i model.
 
 #### `/tall-search`
 
-Aggiungi funzionalità di ricerca full-text ai model.
+Add full-text search capabilities to your models.
 
-**Implementa:**
+**Implement:**
 - Setup Laravel Scout
-- Integrazione Meilisearch/Algolia
-- Componente Livewire per la ricerca
-- Filtri e facets
-- Ricerca in tempo reale
+- Meilisearch/Algolia integration
+- Livewire Component for search
+- Facets and filters
+- Real time search
 
 ---
 
 #### `/tall-export`
 
-Aggiungi funzionalità di esportazione dati (CSV, Excel, PDF).
+Add data export functionality (CSV, Excel, PDF).
 
-**Crea:**
-- Classi di export
-- Componente Livewire per l'export
-- Supporto multipli formati
-- Export in coda per grandi dataset
-- Template PDF
+**Creates:**
+- Export classes
+- Livewire export component
+- Support for multiple formats
+- Queued export for large datasets
+- PDF template
 
----
+***
 
 #### `/tall-monitor`
 
-Setup monitoring delle performance e tracking degli errori.
+Set up performance monitoring and error tracking.
 
-**Configura:**
+**Configures:**
 - Laravel Telescope
 - Laravel Pulse
-- Integrazione Sentry
+- Sentry integration
 - Health check endpoints
-- Metriche di performance
+- Performance metrics
 
----
+***
 
 #### `/tall-optimize`
 
@@ -363,11 +363,11 @@ Analyze and optimize application performance.
 - Caching opportunities
 - Code quality
 
----
+***
 
 #### `/tall-monitor`
 
-Setup performance monitoring and error tracking.
+Set up performance monitoring and error tracking.
 
 **Configures:**
 - Laravel Telescope
@@ -376,7 +376,7 @@ Setup performance monitoring and error tracking.
 - Health check endpoints
 - Performance metrics
 
----
+***
 
 #### `/tall-test`
 
@@ -389,11 +389,11 @@ Generate comprehensive tests for components and features.
 - Authorization tests
 - Browser tests (optional)
 
----
+***
 
 #### `/tall-deploy`
 
-Complete production deployment guide.
+Complete guide for production deployment.
 
 **Includes:**
 - Pre-deployment checklist
@@ -403,7 +403,7 @@ Complete production deployment guide.
 - Monitoring
 - Rollback plan
 
----
+***
 
 #### `/boost-setup`
 
@@ -412,7 +412,7 @@ Complete wizard to configure Laravel Boost MCP with TALL Stack.
 **Performs:**
 - Install Laravel Boost
 - Configure MCP server for Claude Code
-- Setup TALL Stack AI guidelines
+- Set up TALL Stack AI guidelines
 - Test integration
 - Team documentation
 
@@ -420,7 +420,7 @@ Complete wizard to configure Laravel Boost MCP with TALL Stack.
 
 ### What is Laravel Boost?
 
-Laravel Boost is an **MCP (Model Context Protocol) server** that provides Claude Code with 15+ specialized tools to understand your Laravel project in real-time.
+Laravel Boost is a **MCP (Model Context Protocol) server** that equips Claude Code with over 15 specialized tools to understand your Laravel project in real-time.
 
 ### Why Use It with TALL Stack?
 
@@ -431,11 +431,11 @@ Laravel Boost is an **MCP (Model Context Protocol) server** that provides Claude
 - Searches versioned documentation
 
 **Available MCP Tools:**
-1. **Application Context**: PHP/Laravel versions, packages, models
-2. **Database Operations**: Schema inspection, query execution
-3. **Code Discovery**: Routes, commands, config
-4. **Development Utils**: Logs, Tinker REPL, URL generation
-5. **Documentation API**: 17,000+ Laravel docs with semantic search
+1. **Application Context:** PHP/Laravel versions, packages, models
+2. **Database Operations:** Schema inspection, query execution
+3. **Code Discovery:** Routes, commands, configuration
+4. **Development Utilities:** Logs, Tinker REPL, URL generation
+5. **Documentation API:** 17,000+ Laravel docs with semantic search
 
 ### Quick Setup
 
@@ -626,10 +626,10 @@ This system is optimized for:
 ### Laravel Boost (Optional but Recommended)
 
 **What It Adds:**
-- **MCP Server**: 15+ tools for context awareness
-- **AI Guidelines**: Blade templates for custom patterns
-- **Documentation API**: Semantic search in 17K+ docs
-- **Version Aware**: Code specific to your versions
+- **MCP Server:** 15+ tools for context awareness
+- **AI Guidelines:** Blade templates for custom patterns
+- **Documentation API:** Semantic search in 17K+ docs
+- **Version Awareness:** Code specific to your versions
 
 **When to Use:**
 - ✅ Medium/large projects
@@ -639,18 +639,18 @@ This system is optimized for:
 - ❌ Tiny/prototype projects (overkill)
 
 **Benefits:**
-1. **Faster Development**: Context eliminates guesswork
-2. **Better Code Quality**: Version-correct, schema-aware
-3. **Team Consistency**: Shared AI guidelines
-4. **Learning Curve**: AI understands your codebase
+1. **Faster Development:** Eliminates guesswork
+2. **Better Code Quality:** Version-correct, schema-aware
+3. **Team Consistency:** Shared AI guidelines
+4. **Learning Curve:** AI understands your codebase
 
 ## 📄 License
 
-MIT License - Feel free to use and modify for your projects!
+MIT License — Free to use and modify for your projects!
 
 ## 🌟 Credits
 
-Created to simplify TALL Stack development with Claude AI assistance.
+Created to streamline TALL Stack development with Claude AI assistance.
 
 ### Useful Links
 
@@ -670,9 +670,9 @@ Have questions? Ask Claude Code directly using the agents!
 How can I implement a real-time notification system in TALL Stack?
 ```
 
-**With Boost MCP**: Claude can analyze your project and give specific answers!
+**With Boost MCP:** Claude can analyze your project and give specific answers!
 
----
+***
 
 **Happy Coding! 🚀**
 
