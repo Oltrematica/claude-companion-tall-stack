@@ -4,10 +4,15 @@ A complete AI agent system for Claude Code, optimized for developing **TALL Stac
 
 ## 🎯 Features
 
-- **Specialized Agents**: Dedicated experts for Laravel, Livewire, Tailwind, and Alpine.js
+- **11 Specialized Agents**: Dedicated experts for Laravel, Livewire, Filament, Security, Testing, and more
+- **17+ Slash Commands**: Quick commands for CRUD, Filament resources, widgets, optimization, and deployment
+- **Filament 4.x Integration**: Complete support for the leading TALL Stack admin panel
+- **Laravel Reverb Support**: Native WebSocket patterns for real-time features
+- **Modern Testing**: Pest 3.x with architecture testing examples
 - **Laravel Boost MCP Integration**: Leverage Boost's MCP tools for context-aware development
-- **Quick Commands**: Slash commands for common TALL Stack operations
-- **AI Guidelines**: Templates for custom Boost guidelines
+- **Reusable Patterns**: 11+ architectural patterns, conventions, and examples
+- **4 Starter Kits**: SaaS, Blog, E-commerce, and Dashboard templates
+- **Laravel 12 Ready**: Updated for the latest stable Laravel, Livewire, and ecosystem
 - **Best Practices**: Follow official conventions and community best practices
 - **Complete**: Covers the entire development cycle, from setup to deployment
 - **Modular**: Easily extendable and customizable
@@ -15,9 +20,11 @@ A complete AI agent system for Claude Code, optimized for developing **TALL Stac
 ## 📋 Prerequisites
 
 - [Claude Code](https://claude.ai/claude-code) installed
-- Laravel 10+ project with Livewire 3+
-- Node.js and NPM for asset management
+- Laravel 11+ or 12+ project with Livewire 3.5+
+- Node.js 20+ and NPM for asset management
+- PHP 8.3+
 - **(Optional)** [Laravel Boost](https://github.com/laravel/boost) for MCP context-aware development
+- **(Optional)** [Filament 4.x](https://filamentphp.com) for advanced admin panels
 
 ## 🚀 Quick Start
 
@@ -53,7 +60,7 @@ php artisan boost:install
 ```
 your-laravel-project/
 ├── .claude/
-│   ├── agents/
+│   ├── agents/                              # 11 specialized agents
 │   │   ├── tall-stack.md                    # Main coordinator
 │   │   ├── tall-stack-laravel.md            # Laravel expert
 │   │   ├── tall-stack-livewire.md           # Livewire expert
@@ -61,8 +68,9 @@ your-laravel-project/
 │   │   ├── tall-stack-database.md           # Database expert
 │   │   ├── tall-stack-security.md           # Security expert
 │   │   ├── tall-stack-testing.md            # Testing expert
+│   │   ├── filament-expert.md               # 🆕 Filament 4 specialist
 │   │   └── boost-mcp-integration.md         # Boost MCP guide
-│   ├── commands/
+│   ├── commands/                            # 17+ slash commands
 │   │   ├── tall-new-component.md
 │   │   ├── tall-crud.md
 │   │   ├── tall-refactor.md
@@ -74,7 +82,25 @@ your-laravel-project/
 │   │   ├── tall-test.md
 │   │   ├── tall-monitor.md
 │   │   ├── tall-deploy.md
-│   │   └── boost-setup.md                   # Boost setup wizard
+│   │   ├── boost-setup.md
+│   │   ├── filament-setup.md                # 🆕 Filament installation wizard
+│   │   ├── filament-resource.md             # 🆕 Generate Filament resources
+│   │   └── filament-widget.md               # 🆕 Create dashboard widgets
+│   ├── prompts/                             # Reusable patterns & conventions
+│   │   ├── patterns/
+│   │   │   ├── service-pattern.md
+│   │   │   ├── repository-pattern.md
+│   │   │   ├── action-pattern.md
+│   │   │   ├── dto-pattern.md
+│   │   │   └── reverb-broadcasting.md       # 🆕 WebSocket patterns
+│   │   ├── conventions/
+│   │   │   ├── naming.md
+│   │   │   ├── coding-standards.md
+│   │   │   └── git-workflow.md
+│   │   └── examples/
+│   │       ├── livewire-data-table.md
+│   │       ├── livewire-modal-form.md
+│   │       └── pest-architecture-tests.md   # 🆕 Pest 3.x testing
 │   └── .ai-guidelines-examples/             # Boost guidelines templates
 │       ├── tall-stack.blade.php
 │       └── README.md
@@ -94,7 +120,43 @@ your-laravel-project/
 └── ...
 ```
 
-### 4. First Use
+### 4. What's New in 3.0 🎉
+
+**Major Updates:**
+
+1. **Filament 4.x Integration** - Complete admin panel support
+   ```bash
+   /filament-setup    # Install and configure Filament 4
+   /filament-resource # Generate CRUD resources
+   /filament-widget   # Create dashboard widgets
+   ```
+
+2. **Laravel Reverb (WebSockets)** - Native real-time features
+   - Real-time notifications
+   - Live data tables
+   - Chat applications
+   - Presence channels
+
+3. **Pest 3.x Architecture Testing** - Enforce code quality
+   - Layer dependency tests
+   - Naming convention tests
+   - Security rule enforcement
+   - TALL Stack specific patterns
+
+4. **Laravel 12 & PHP 8.3** - Latest stable versions
+   - Updated all examples
+   - New Laravel 12 features
+   - Performance improvements
+
+5. **Enhanced Documentation** - More examples and patterns
+   - 11+ reusable patterns
+   - WebSocket implementation guides
+   - Modern testing strategies
+   - Production deployment patterns
+
+See [CHANGELOG.md](CHANGELOG.md) for complete details and [EVOLUTION.md](EVOLUTION.md) for the roadmap.
+
+### 5. First Use
 
 **Standard setup:**
 ```
@@ -176,6 +238,14 @@ What's the best way to structure a multi-tenant application in the TALL Stack?
    - Context-aware development
    - Tool integration
    - Best practices
+
+8. **`filament-expert`** 🆕 - Filament Admin Panel Expert
+   - Filament 4.x configuration
+   - Resource generation (CRUD)
+   - Form and Table builders
+   - Custom widgets and pages
+   - Theme customization
+   - Plugin ecosystem integration
 
 ### Slash Commands
 
@@ -416,6 +486,55 @@ Complete wizard to configure Laravel Boost MCP with TALL Stack.
 - Test integration
 - Team documentation
 
+---
+
+#### `/filament-setup` 🆕
+
+Complete Filament 4.x installation and configuration wizard.
+
+**Performs:**
+- Install Filament 4 via Composer
+- Configure admin panel
+- Create admin user
+- Set up custom theme (optional)
+- Install essential plugins (Shield, Breezy, Media Library)
+- Generate first resource
+- Configure security and optimization
+
+---
+
+#### `/filament-resource` 🆕
+
+Generate a complete CRUD resource for Filament 4.
+
+**Generates:**
+- Resource class with form and table
+- Model (if not exists)
+- Migration with proper schema
+- Policy for authorization
+- Tests for the resource
+- Advanced filters and bulk actions
+- Media uploads support
+- SEO fields
+
+---
+
+#### `/filament-widget` 🆕
+
+Create custom dashboard widgets for Filament.
+
+**Types:**
+- Stats widgets (KPIs, metrics)
+- Chart widgets (line, bar, pie, doughnut)
+- Table widgets (recent data)
+- Custom widgets (fully customizable)
+
+**Features:**
+- Real-time updates
+- Filters
+- Interactive elements
+- Performance optimization
+
 ## 🔋 Laravel Boost Integration
 
 ### What is Laravel Boost?
@@ -617,11 +736,13 @@ Detailed instructions for Claude on what to do...
 
 This system is optimized for:
 
-- **Laravel** 10+
-- **Livewire** 3+
-- **Tailwind CSS** 3+
-- **Alpine.js** 3+
-- **PHP** 8.1+
+- **Laravel** 11+ / 12+ (latest stable)
+- **Livewire** 3.5+
+- **Tailwind CSS** 3.4+
+- **Alpine.js** 3.14+
+- **PHP** 8.3+
+- **Pest** 3.x (recommended for testing)
+- **Filament** 4.x (optional, for admin panels)
 
 ### Laravel Boost (Optional but Recommended)
 
@@ -654,13 +775,30 @@ Created to streamline TALL Stack development with Claude AI assistance.
 
 ### Useful Links
 
-- [Laravel Documentation](https://laravel.com/docs)
+#### Laravel Ecosystem
+- [Laravel 12 Documentation](https://laravel.com/docs/12.x)
 - [Laravel Boost](https://github.com/laravel/boost) - MCP server for AI development
-- [Livewire Documentation](https://livewire.laravel.com/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Alpine.js Documentation](https://alpinejs.dev)
+- [Laravel Reverb](https://laravel.com/docs/12.x/reverb) - Native WebSocket server
+- [Livewire 3.x Documentation](https://livewire.laravel.com/docs)
+- [Filament 4.x Documentation](https://filamentphp.com/docs)
+
+#### Frontend
+- [Tailwind CSS 3.4 Documentation](https://tailwindcss.com/docs)
+- [Alpine.js 3.14 Documentation](https://alpinejs.dev)
+
+#### Testing
+- [Pest 3.x Documentation](https://pestphp.com/docs)
+- [Pest Architecture Plugin](https://pestphp.com/docs/arch-testing)
+
+#### Tools & Resources
 - [Claude Code Documentation](https://docs.claude.com/claude-code)
 - [Model Context Protocol](https://modelcontextprotocol.io)
+
+#### Community & Learning
+- [Laravel News](https://laravel-news.com)
+- [Laracasts](https://laracasts.com)
+- [Filament Discord](https://filamentphp.com/discord)
+- [Livewire Discord](https://discord.gg/livewire)
 
 ## 💬 Support
 
@@ -676,4 +814,4 @@ How can I implement a real-time notification system in TALL Stack?
 
 **Happy Coding! 🚀**
 
-Last updated: 2025-11-05 | Version: 2.1.0 (Enhanced Commands & Agents)
+Last updated: 2025-11-10 | Version: 3.0.0-dev (Laravel 12 & Filament 4 Ready)
